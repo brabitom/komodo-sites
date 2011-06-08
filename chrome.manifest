@@ -1,0 +1,3 @@
+content sites jar:sites.jar!/content/ xpcnativewrappers=yes
+skin sites classic/1.0 jar:sites.jar!/skin/
+overlay chrome://komodo/content/komodo.xul chrome://sites/content/overlay.xul
