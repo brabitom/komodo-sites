@@ -65,15 +65,17 @@
 
         <!--<popupset>-->
             <menupopup id="sites_edit_Smenu" onpopupshowing="ko.extensions.Sites.on_popupShowing(event)" >
-                <menuitem id="menu_rename_S" label="Rename"       class="menuitem-iconic-wide rename-iconz"   oncommand="ko.extensions.Sites.on_rename('S');"/>
-                <menuitem id="menu_link_S"   label="Make favorite" class="menuitem-iconic-wide link-iconz"     oncommand="ko.extensions.Sites.on_link();"/>
-                <menuitem id="menu_reload_S" label="Reload"       class="menuitem-iconic-wide reload-iconz"   oncommand="ko.extensions.Sites.S.init_List_forView();"/>
-                <menuitem id="menu_delete_S" label="Delete"       class="menuitem-iconic-wide delete-iconz"   oncommand="ko.extensions.Sites.on_delete('S');"/>
+                <menuitem id="menu_rename_S" label="Rename"       class="menuitem-iconic rename-iconz"   oncommand="ko.extensions.Sites.on_rename('S');"/>
+                <menuitem id="menu_link_S"   label="Make favorite" class="menuitem-iconic link-iconz"     oncommand="ko.extensions.Sites.on_link();"/>
+                <menuitem id="menu_reload_S" label="Reload"       class="menuitem-iconic reload-iconz"   oncommand="ko.extensions.Sites.S.init_List_forView();"/>
+                <menuitem id="menu_delete_S" label="Delete"       class="menuitem-iconic delete-iconz"   oncommand="ko.extensions.Sites.on_delete('S');"/>
+                <menuitem id="menu_create_subdir_S" label="Create subdirectory"       class="menuitem-iconic newfolder-iconz"   oncommand="ko.extensions.Sites.on_mkDir();"/>
+                <menuitem id="menu_create_file_S" label="Create file"       class="menuitem-iconic newfile-iconz"   oncommand="ko.extensions.Sites.on_mkFile();"/>
             </menupopup>
         <!--</popupset>        -->
             <menupopup id="sites_edit_Fmenu">
-                <menuitem id="menu_rename_F" label="Rename" class="menuitem-iconic-wide rename-iconz" oncommand="ko.extensions.Sites.on_rename('F');"/>
-                <menuitem id="menu_delete_F" label="Delete" class="menuitem-iconic-wide delete-iconz" oncommand="ko.extensions.Sites.on_delete('F');"/>
+                <menuitem id="menu_rename_F" label="Rename" class="menuitem-iconic rename-iconz" oncommand="ko.extensions.Sites.on_rename('F');"/>
+                <menuitem id="menu_delete_F" label="Delete" class="menuitem-iconic delete-iconz" oncommand="ko.extensions.Sites.on_delete('F');"/>
             </menupopup>
 
         <tabpanel flex="1" id="sitesviewbox" insertafter="codebrowserviewbox">
