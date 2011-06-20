@@ -599,22 +599,28 @@ this.on_popupShowing    = function() {
     var S_Row = this.S.tree_rows[document.popupNode._lastSelectedRow]
     if(S_Row.depth == 0){
         if(S_Row.link){
-            $('menu_rename_S').hidden = true;
-            $('menu_link_S').hidden   = true;
-            $('menu_delete_S').hidden = false;
-            $('menu_reload_S').hidden = true;
+            $('menu_rename_S').hidden           = true;
+            $('menu_link_S').hidden             = true;
+            $('menu_delete_S').hidden           = false;
+            $('menu_reload_S').hidden           = true;
+            $('menu_create_subdir_S').hidden    = false;
+            $('menu_create_file_S').hidden      = false;
         }
         else if(S_Row.path){
-            $('menu_rename_S').hidden = true;
-            $('menu_link_S').hidden   = true;
-            $('menu_delete_S').hidden = true;
-            $('menu_reload_S').hidden = false;
+            $('menu_rename_S').hidden           = true;
+            $('menu_link_S').hidden             = true;
+            $('menu_delete_S').hidden           = true;
+            $('menu_reload_S').hidden           = false;
+            $('menu_create_subdir_S').hidden    = false;
+            $('menu_create_file_S').hidden      = false;
         }
         else{
-            $('menu_rename_S').hidden = true;
-            $('menu_link_S').hidden   = true;
-            $('menu_delete_S').hidden = true;
-            $('menu_reload_S').hidden = false;
+            $('menu_rename_S').hidden           = true;
+            $('menu_link_S').hidden             = true;
+            $('menu_delete_S').hidden           = true;
+            $('menu_reload_S').hidden           = false;
+            $('menu_create_subdir_S').hidden    = false;
+            $('menu_create_file_S').hidden      = false;
 //            $('sites_edit_Smenu').appendChild(
 //                                            create( "menuitem",{id : "menu_reload_S",
 //                                                                label : "Reload",
