@@ -105,6 +105,14 @@
 
                     <spacer flex="1"/>
 
+                  <toolbarbutton
+                        id="sites_accounts_refresh_button"
+                        tooltiptext="Refresh accounts"
+                        label="Refresh accounts"
+                        buttonstyle="pictures"
+                        class="all-reload-icon"
+                        oncommand="ko.extensions.Sites.S.init_List_forView();" />
+
                     <toolbarbutton
                         id="sites_accounts_button"
                         tooltiptext="Accounts"
