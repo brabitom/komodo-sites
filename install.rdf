@@ -4,10 +4,10 @@
     <Description about="urn:mozilla:install-manifest">
         <em:id>{e98dde1f-b8ab-49cc-a634-00d32adc7cc3}</em:id>
         <em:name>Sites</em:name>
-        <em:version>0.1.2</em:version>
+        <em:version>0.2</em:version>
         <em:description>Remote and local file browser</em:description>
         <em:creator>Tomas Brabenec</em:creator>
-        <em:creator>Joker</em:creator>
+        <em:contributor>Joker</em:contributor>
         <em:homepageURL>http://community.activestate.com/node/6894</em:homepageURL>
         <em:type>2</em:type> <!-- type=extension -->
 

@@ -1,3 +1,4 @@
 content sites sites/content/ xpcnativewrappers=yes
 skin sites classic/1.0 sites/skin/
-overlay chrome://komodo/content/komodo.xul chrome://sites/content/overlay.xul
+overlay chrome://komodo/content/komodo.xul chrome://sites/content/overlay.xul appversion<=6.99
+overlay chrome://komodo/content/komodo.xul chrome://sites/content/overlay-ko7.xul appversion>6.99
