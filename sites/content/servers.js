@@ -232,9 +232,20 @@ this.init_rowsList = function(){
         Self.osSvc.mkdir(this.path + name)
     }
     LocalDir.prototype.mkFile       = function(name){
-        var newFile = Self.docSvc.createDocumentFromURI(ko.uriparse.localPathToURI(this.path) + name)
-            ko.views.manager.topView.createViewFromDocument(newFile, 'editor')
-            newFile.save(true)
+
+    var koFileEx = Components.classes["@activestate.com/koFileEx;1"]
+                    .createInstance(Components.interfaces.koIFileEx);
+            koFileEx.URI = ko.uriparse.localPathToURI(this.path) + name;
+            koFileEx.open("w");
+            koFileEx.puts("");
+            koFileEx.close();
+
+       ko.open.URI(ko.uriparse.localPathToURI(this.path) + name);
+
+         //var newFile = Self.docSvc.createDocumentFromURI(ko.uriparse.localPathToURI(this.path) + name);
+         //
+         //   ko.views.manager.topView.createViewFromDocument(newFile, 'editor');
+         //   newFile.save(true);
     }
     LocalDir.prototype.remove       = function(){
         var sysUtilsSvc = Components.classes['@activestate.com/koSysUtils;1'].
@@ -367,9 +378,19 @@ this.init_rowsList = function(){
         this.connection.createDirectory(this.rf_info.getFilepath() + '/' + name, 0755);
     }
     RemoteDir.prototype.mkFile      = function(name){
-        var newFile = Self.docSvc.createDocumentFromURI(Self.rConnectSvc.getUriForConnectionAndRfInfo(this.connection, this.rf_info)+ '/' + name)
-            ko.views.manager.topView.createViewFromDocument(newFile, 'editor')
-            newFile.save(true)
+
+        var koFileEx = Components.classes["@activestate.com/koFileEx;1"]
+                    .createInstance(Components.interfaces.koIFileEx);
+            koFileEx.URI = Self.rConnectSvc.getUriForConnectionAndRfInfo(this.connection, this.rf_info)+ '/' + name;
+            koFileEx.open("w");
+            koFileEx.puts("");
+            koFileEx.close();
+
+       ko.open.URI(Self.rConnectSvc.getUriForConnectionAndRfInfo(this.connection, this.rf_info)+ '/' + name);
+
+        //var newFile = Self.docSvc.createDocumentFromURI(Self.rConnectSvc.getUriForConnectionAndRfInfo(this.connection, this.rf_info)+ '/' + name)
+        //    ko.views.manager.topView.createViewFromDocument(newFile, 'editor')
+        //    newFile.save(true)
     }
     RemoteDir.prototype.rename      = function(name){
         this.connection.rename(this.rf_info.getDirname() + '/' + this.name, this.rf_info.getDirname() + '/' + name);
