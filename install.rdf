@@ -4,7 +4,7 @@
     <Description about="urn:mozilla:install-manifest">
         <em:id>{e98dde1f-b8ab-49cc-a634-00d32adc7cc3}</em:id>
         <em:name>Sites</em:name>
-        <em:version>0.2</em:version>
+        <em:version>0.2.1</em:version>
         <em:description>Remote and local file browser</em:description>
         <em:creator>Tomas Brabenec</em:creator>
         <em:contributor>Joker</em:contributor>
