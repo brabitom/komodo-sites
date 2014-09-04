@@ -44,8 +44,9 @@
 
         <ko-pane id="workspace_left_area">
             <browser id="sites_browser"
-                     label="Sites" 
+                     label="Sites"
                      type="ko-widget"
+                     icon="chrome://icomoon/skin/icons/tree5.png"
                      src="chrome://sites/content/sites.xul" />
         </ko-pane>
 
