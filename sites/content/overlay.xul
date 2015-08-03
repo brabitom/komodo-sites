@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay PUBLIC "-//MOZILLA//DTD XUL V1.0//EN" "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<!-- ***** BEGIN LICENSE BLOCK *****
+   * Version: MPL 1.1/GPL 2.0/LGPL 2.1
+   *
+   * The contents of this file are subject to the Mozilla Public License Version
+   * 1.1 (the "License"); you may not use this file except in compliance with
+   * the License. You may obtain a copy of the License at
+   * http://www.mozilla.org/MPL/
+   *
+   * Software distributed under the License is distributed on an "AS IS" basis,
+   * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   * for the specific language governing rights and limitations under the
+   * License.
+   *
+   * The Initial Developer of the Original Code
+   * Portions created by the Initial Developer are Copyright (C) 2008
+   * the Initial Developer. All Rights Reserved.
+   *
+   * Tomas Brabenec - http://brabenec.net
+   * Based on code JSTreeDrive originally developed by Joker <deck@joker.exnet.su>
+   *
+   * Alternatively, the contents of this file may be used under the terms of
+   * either the GNU General Public License Version 2 or later (the "GPL"), or
+   * the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
+   * in which case the provisions of the GPL or the LGPL are applicable instead
+   * of those above. If you wish to allow use of your version of this file only
+   * under the terms of either the GPL or the LGPL, and not to allow others to
+   * use your version of this file under the terms of the MPL, indicate your
+   * decision by deleting the provisions above and replace them with the notice
+   * and other provisions required by the LGPL or the GPL. If you do not delete
+   * the provisions above, a recipient may use your version of this file under
+   * the terms of any one of the MPL, the GPL or the LGPL.
+   *
+   * ***** END LICENSE BLOCK ***** -->
+
+<?xml-stylesheet href="chrome://komodo/skin/global/global.css"       type="text/css"?>
+<?xml-stylesheet href="chrome://komodo/skin/bindings/scrolltabs.css" type="text/css"?>
+<?xml-stylesheet href="chrome://global/skin/filepicker.css"          type="text/css"?>
+<?xml-stylesheet href="chrome://global/skin/global.css"              type="text/css"?>
+<?xml-stylesheet href="chrome://sites/skin/sites.css"    type="text/css"?>
+
+<overlay id="SitesOverlay"
+         xmlns:html="http://www.w3.org/1999/xhtml"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+    <script src="chrome://sites/content/dinamicTree.js"   type="application/x-javascript"/>
+    <script src="chrome://sites/content/imageView.js"     type="application/x-javascript"/>
+    <script src="chrome://sites/content/servers.js"       type="application/x-javascript"/>
+
+
+
+    <tabs id="project_toolbox_tabs" minimizeleftcollapsed="false">
+        <tab id="sites_tab" label="Sites"
+             insertafter="codebrowser_tab"
+             tooltiptext="Local or remote files"
+             linkedpanel="sitesviewbox"
+             onmovetab_load="ko.extensions.Sites.servers_tree.focus();"
+              />
+    </tabs>
+
+
+    <tabpanels id="project_toolbox_tabpanels">
+
+        <!--<popupset>-->
+            <menupopup id="sites_edit_Smenu" onpopupshowing="ko.extensions.Sites.on_popupShowing(event)" >
+                <menuitem id="menu_rename_S" label="Rename"       class="menuitem-iconic rename-iconz"   oncommand="ko.extensions.Sites.on_rename('S');"/>
+                <menuitem id="menu_link_S"   label="Make favorite" class="menuitem-iconic link-iconz"     oncommand="ko.extensions.Sites.on_link();"/>
+                <menuitem id="menu_reload_S" label="Reload"       class="menuitem-iconic reload-iconz"   oncommand="ko.extensions.Sites.S.init_List_forView();"/>
+                <menuitem id="menu_delete_S" label="Delete"       class="menuitem-iconic delete-iconz"   oncommand="ko.extensions.Sites.on_delete('S');"/>
+                <menuitem id="menu_create_subdir_S" label="Create subdirectory"       class="menuitem-iconic newfolder-iconz"   oncommand="ko.extensions.Sites.on_mkDir();"/>
+                <menuitem id="menu_create_file_S" label="Create file"       class="menuitem-iconic newfile-iconz"   oncommand="ko.extensions.Sites.on_mkFile();"/>
+            </menupopup>
+        <!--</popupset>        -->
+            <menupopup id="sites_edit_Fmenu">
+                <menuitem id="menu_rename_F" label="Rename" class="menuitem-iconic rename-iconz" oncommand="ko.extensions.Sites.on_rename('F');"/>
+                <menuitem id="menu_delete_F" label="Delete" class="menuitem-iconic delete-iconz" oncommand="ko.extensions.Sites.on_delete('F');"/>
+            </menupopup>
+
+        <tabpanel flex="1" id="sitesviewbox" insertafter="codebrowserviewbox">
+            <vbox flex="1" id="sites_main">
+                <hbox align="center" id="sites_button_panel" style="padding: 2px; padding-top: 0px;">
+                    <toolbarbutton
+                        id="sites_refresh_button"
+                        tooltiptext="Refresh"
+                        label="Refresh"
+                        buttonstyle="pictures"
+                        class="all-reload-icon"
+                        oncommand="ko.extensions.Sites.on_reload();" />
+                    <toolbarbutton
+                        id="sites_refresh_button"
+                        tooltiptext="Create Directory"
+                        label="Create Directory"
+                        buttonstyle="pictures"
+                        class="newfolder-iconz"
+                        oncommand="ko.extensions.Sites.on_mkDir();" />
+                    <toolbarbutton
+                        id="sites_refresh_button"
+                        tooltiptext="Create File"
+                        label="Create File"
+                        buttonstyle="pictures"
+                        class="newfile-iconz"
+                        oncommand="ko.extensions.Sites.on_mkFile();" />
+
+                    <spacer flex="1"/>
+
+                  <toolbarbutton
+                        id="sites_accounts_refresh_button"
+                        tooltiptext="Refresh accounts"
+                        label="Refresh accounts"
+                        buttonstyle="pictures"
+                        class="all-reload-icon"
+                        oncommand="ko.extensions.Sites.S.init_List_forView();" />
+
+                    <toolbarbutton
+                        id="sites_accounts_button"
+                        tooltiptext="Accounts"
+                        label="Accounts"
+                        buttonstyle="pictures"
+                        class="server-pref-icon"
+                        oncommand="ko.windowManager.getMainWindow().prefs_doGlobalPrefs('serversItem');" />
+                </hbox>
+
+                <tree id="sites_S_tree"
+                      flex="1" seltype="single" flags="dont-build-content"
+                      onselect="ko.extensions.Sites.on_directorySelect(event);"
+                      hidecolumnpicker="true"
+                      style="margin: 0px; padding: 0px;">
+                    <treecols>
+                        <treecol id="tree_col_folder_name"
+                                 primary="true" flex="1"
+                                 hideheader="true"/>
+                    </treecols>
+                    <treechildren  flex="1" context="sites_edit_Smenu" />
+                </tree>
+
+                <splitter id="sites_splitter"
+                          collapse="after"
+                          class="grippy_splitter_collapsable"
+                          orient="vertical"
+                          persist="state"
+                          style="margin: 0px; padding: 0px;"><!-- border: none;  -->
+                </splitter>
+
+                <tree id="sites_F_tree"
+                      flex="1"
+                      seltype="single"
+                      onclick="ko.extensions.Sites.on_Open(event);"
+                      onkeypress="ko.extensions.Sites.on_Open(event);"
+                      style="margin: 0px; padding: 0px;"><!--seltype="multiple"-->
+                    <treecols>
+                        <treecol id="file_tree_col_name"
+                                 label="Files name"
+                                 flex="3"
+                                 crop="center"
+                                 persist="width ordinal hidden sortActive sortDirection"
+                                 class="sortDirectionIndicator"
+                                 sortActive="true"/>
+                        <splitter class="tree-splitter" />
+                        <treecol id="file_tree_col_size"
+                                 label="Size"
+                                 flex="1"
+                                 persist="width ordinal hidden sortActive sortDirection"
+                                 class="sortDirectionIndicator"/>
+                        <splitter class="tree-splitter" />
+                        <treecol id="file_tree_col_date"
+                                 label="Date"
+                                 flex="1"
+                                 persist="width ordinal hidden sortActive sortDirection"
+                                 class="sortDirectionIndicator"/>
+                    </treecols>
+                    <treechildren flex="1" context="sites_edit_Fmenu" />
+                </tree>
+            </vbox>
+        </tabpanel>
+    </tabpanels>
+
+</overlay>
