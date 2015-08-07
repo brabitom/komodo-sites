@@ -32,8 +32,8 @@
    *
    * ***** END LICENSE BLOCK ***** */
 
-
 (function() {
+    
 this.init_serverList = function(){
     var Self = ko.extensions.Sites;
 
@@ -667,9 +667,10 @@ this.run = function(){
 
 }).apply(ko.extensions.Sites);
 
+window.addEventListener('load', function(event) { ko.extensions.Sites.run(event); }, false);
+
 //addEventListener("load", ko.extensions.Sites.run, false);
 //addEventListener("load", function() { setTimeout(ko.extensions.Sites.run, 3000); }, false);
-window.addEventListener("load", function(event) { ko.extensions.Sites.run(event); }, false);
 
 //            var urls = [];
 //            var rangeCount = this.F.selection.getRangeCount();
