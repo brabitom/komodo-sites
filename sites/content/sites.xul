@@ -100,7 +100,7 @@
                 id="sites_accounts_button"
                 tooltiptext="Accounts"
                 buttonstyle="pictures"
-                class="server-pref-icon"
+                class="server-pref-icon icon-server"
                 oncommand="ko.windowManager.getMainWindow().prefs_doGlobalPrefs('serversItem');" />
         </hbox>
 

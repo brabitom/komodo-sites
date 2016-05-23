@@ -86,37 +86,6 @@ this.init_serverList = function(){
     }
 
 
-    function get_serversListKo4(){
-        try {
-            var passwd  = Components.classes["@mozilla.org/passwordmanager;1"].
-                          getService(Components.interfaces.nsIPasswordManager);
-            var e       = passwd.enumerator;
-
-            var list = [];
-            var count = 0;
-            while (e.hasMoreElements()) {
-                count++;
-                var nspassword = e.getNext().QueryInterface(Components.interfaces.nsIPassword);
-                var server_info = new String(nspassword.host).split(":");
-
-                list.push(   new Server(server_info[0],
-                                        server_info[1],
-                                        server_info[2],
-                                        server_info[3],
-                                        server_info[4],
-                                        new String(nspassword.user),
-                                        new String(nspassword.password)
-                                        )
-                         );
-                list.sort( function (a,b) { if (a.alias==b.alias) return 0; if (a.alias<b.alias) return -1; return 1; });
-            }
-
-        } catch(e) {
-            log.exception(e);
-        }
-
-        return list;
-    }
     function get_serversListKo5(){
         try {
             var list  = [];
@@ -142,10 +111,7 @@ this.init_serverList = function(){
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    var appInfo = Components.classes["@activestate.com/koInfoService;1"].
-                        getService(Components.interfaces.koIInfoService);
-
-    this.servers_list = (appInfo.version[0] <= "4") ? get_serversListKo4() : get_serversListKo5() ;
+    this.servers_list = get_serversListKo5() ;
 }
 
 this.init_rowsList = function(){
