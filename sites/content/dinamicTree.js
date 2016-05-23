@@ -136,6 +136,10 @@ ko.extensions.Sites.S_nsITreeView.prototype = {
     },
 
     getCellProperties   : function(num, column, properties) {
+        if (properties == undefined) {
+            return;
+        }
+        
         if (this.tree_rows[num].depth == 0) {                   // Depth is 0, it's a server
             if(this.tree_rows[num].link)
                 properties.AppendElement(this.mLinkAtom);
@@ -279,6 +283,10 @@ ko.extensions.Sites.F_nsITreeView.prototype = {
     getRowProperties    : function(row,prop)   {},
     getColumnProperties : function(column,prop){},
     getCellProperties   : function(row, column, properties) {
+        if (properties == undefined) {
+            return;
+        }
+        
         if (column.id == "file_tree_col_name") {
             if(this.file_rows[row].ext){
                 switch(this.file_rows[row].ext)
@@ -363,23 +371,26 @@ ko.extensions.Sites.F_nsITreeView.prototype = {
     },
     getCellText         : function(row, column) {
         var rfInfo = this.file_rows[row];
-        switch (column.id) {
-            case 'file_tree_col_name':
-                return rfInfo.name;
-            case 'file_tree_col_size':
-                return rfInfo.size;
-            case 'file_tree_col_date':
-                // pretty date string
-                var modDate = new Date(rfInfo.time * 1000);
-                return this._dateSvc.FormatDateTime("", this._dateSvc.dateFormatShort,
-                                                        this._dateSvc.timeFormatNoSecondsForce24Hour,
-                                                        modDate.getFullYear(),
-                                                        modDate.getMonth()+1,
-                                                        modDate.getDate(),
-                                                        modDate.getHours(),
-                                                        modDate.getMinutes(),
-                                                        modDate.getSeconds() );
+        if (rfInfo !== undefined) {
+            switch (column.id) {
+                case 'file_tree_col_name':
+                    return rfInfo.name;
+                case 'file_tree_col_size':
+                    return rfInfo.size;
+                case 'file_tree_col_date':
+                    // pretty date string
+                    var modDate = new Date(rfInfo.time * 1000);
+                    return this._dateSvc.FormatDateTime("", this._dateSvc.dateFormatShort,
+                                                            this._dateSvc.timeFormatNoSecondsForce24Hour,
+                                                            modDate.getFullYear(),
+                                                            modDate.getMonth()+1,
+                                                            modDate.getDate(),
+                                                            modDate.getHours(),
+                                                            modDate.getMinutes(),
+                                                            modDate.getSeconds() );
+            }
         }
+       
         return "(Unknown column)";
     },
 
